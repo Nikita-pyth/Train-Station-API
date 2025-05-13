@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from stations.models import Station
+from stations.serializers import StationSerializer
 
-# Create your views here.
+class StationViewSet(ModelViewSet):
+    queryset = Station.objects.all()
+    serializer_class = StationSerializer

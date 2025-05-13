@@ -1,0 +1,57 @@
+[
+  {
+    "model": "stations.station",
+    "pk": 1,
+    "fields": {
+      "name": "Riga",
+      "latitude": 56.9496,
+      "longitude": 24.1052
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 2,
+    "fields": {
+      "name": "Daugavpils",
+      "latitude": 55.8740,
+      "longitude": 26.5358
+    }
+  },
+  {
+    "model": "stations.route",
+    "pk": 1,
+    "fields": {
+      "source": 1,
+      "destination": 2,
+      "distance": 230
+    }
+  },
+  {
+    "model": "trains.traintype",
+    "pk": 1,
+    "fields": {
+      "name": "Express"
+    }
+  },
+  {
+    "model": "trains.train",
+    "pk": 1,
+    "fields": {
+      "name": "Train A",
+      "cargo_num": 3,
+      "places_in_cargo": 20,
+      "train_type": 1
+    }
+  },
+  {
+    "model": "journeys.journey",
+    "pk": 1,
+    "fields": {
+      "route": 1,
+      "train": 1,
+      "departure_time": "2025-05-14T09:00:00Z",
+      "arrival_time": "2025-05-14T13:00:00Z",
+      "crew": []
+    }
+  }
+]
