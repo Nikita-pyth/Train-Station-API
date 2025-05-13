@@ -18,5 +18,8 @@ class Ticket(models.Model):
     journey = models.ForeignKey(Journey, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='tickets')
 
+    class Meta:
+        unique_together = ('journey', 'cargo', 'seat')
+
     def __str__(self):
         return f"Ticket #{self.id} for {self.journey}"
