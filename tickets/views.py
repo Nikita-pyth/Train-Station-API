@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -11,7 +13,15 @@ class TicketViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated,]
 
     def get_queryset(self):
-        return Ticket.objects.filter(order__user=self.request.user)
+        queryset = Ticket.objects.filter(order__user=self.request.user)
+        date = self.request.query_params.get('date')
+        if date:
+            try:
+                date_obj = datetime.strptime(date, '%Y-%m-%d').date()
+                queryset = queryset.filter(date=date_obj)
+            except ValueError:
+                pass
+        return queryset
 
     def perform_create(self, serializer):
         order = serializer.validated_data['order']
