@@ -31,8 +31,8 @@ class OrderReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['created_at', 'orders']
-        read_only_fields = ['created_at', 'orders']
+        fields = ['created_at', 'tickets']
+        read_only_fields = ['created_at', 'tickets']
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):
