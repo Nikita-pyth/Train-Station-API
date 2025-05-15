@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tickets.models import Ticket, Order
+from orders.models import Ticket, Order
 
 
 class TicketSerializer(serializers.ModelSerializer):
@@ -31,8 +31,8 @@ class OrderReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['created_at', 'tickets']
-        read_only_fields = ['created_at', 'tickets']
+        fields = ['created_at', 'orders']
+        read_only_fields = ['created_at', 'orders']
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):

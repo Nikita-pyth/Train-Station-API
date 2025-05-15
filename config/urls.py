@@ -9,7 +9,7 @@ urlpatterns = [
     path('api/stations/', include('stations.urls')),
     path('api/trains/', include('trains.urls')),
     path('api/journeys/', include('journeys.urls')),
-    path('api/tickets/', include('tickets.urls')),
+    path('api/orders/', include('orders.urls')),
     path('api/users/', include('users.urls')),
 
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

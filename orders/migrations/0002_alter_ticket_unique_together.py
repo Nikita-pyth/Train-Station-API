@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('journeys', '0001_initial'),
-        ('tickets', '0001_initial'),
+        ('orders', '0001_initial'),
     ]
 
     operations = [

@@ -3,8 +3,8 @@ from datetime import datetime
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
-from tickets.models import Ticket, Order
-from tickets.serializers import TicketSerializer, OrderReadSerializer, OrderCreateSerializer
+from orders.models import Ticket, Order
+from orders.serializers import TicketSerializer, OrderReadSerializer, OrderCreateSerializer
 
 
 class TicketViewSet(ModelViewSet):
@@ -26,7 +26,7 @@ class TicketViewSet(ModelViewSet):
     def perform_create(self, serializer):
         order = serializer.validated_data['order']
         if order.user != self.request.user:
-            raise PermissionDenied("You can only create tickets for your own orders.")
+            raise PermissionDenied("You can only create orders for your own orders.")
         serializer.save()
 
 

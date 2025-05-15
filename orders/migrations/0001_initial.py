@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('cargo', models.PositiveIntegerField()),
                 ('seat', models.PositiveIntegerField()),
                 ('journey', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='journeys.journey')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tickets', to='tickets.order')),
+                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='orders.order')),
             ],
         ),
     ]
