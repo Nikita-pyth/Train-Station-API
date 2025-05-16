@@ -12,6 +12,18 @@ class TicketSerializer(serializers.ModelSerializer):
             "order",
         ]
 
+    order = serializers.PrimaryKeyRelatedField(queryset=Order.objects.none())
+
+    class Meta:
+        model = Ticket
+        fields = ["cargo", "seat", "journey", "order"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        request = self.context.get("request")
+        if request and not request.user.is_anonymous:
+            self.fields["order"].queryset = Order.objects.filter(user=request.user)
+
     def validate(self, data):
         journey = data.get("journey")
         cargo = data.get("cargo")
@@ -39,6 +51,7 @@ class OrderReadSerializer(serializers.ModelSerializer):
         model = Order
         fields = ["id", "created_at", "tickets"]
         read_only_fields = ["created_at", "tickets"]
+
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):
