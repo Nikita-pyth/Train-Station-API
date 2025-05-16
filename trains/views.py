@@ -4,19 +4,13 @@ from trains.models import Train, TrainType
 from trains.serializers import TrainSerializer, TrainTypeSerializer
 
 
-@extend_schema(
-    summary="Train CRUD",
-    tags=["Train"]
-)
+@extend_schema(summary="Train CRUD", tags=["Train"])
 class TrainViewSet(ModelViewSet):
     queryset = Train.objects.all()
     serializer_class = TrainSerializer
 
 
-@extend_schema(
-    summary="Train type CRUD",
-    tags=["TrainType"]
-)
+@extend_schema(summary="Train type CRUD", tags=["TrainType"])
 class TrainTypeViewSet(ModelViewSet):
     queryset = TrainType.objects.all()
     serializer_class = TrainTypeSerializer

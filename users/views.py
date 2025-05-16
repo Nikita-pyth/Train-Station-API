@@ -8,11 +8,10 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-@extend_schema(
-    summary="Register a new user",
-    tags=["Auth"]
-)
+@extend_schema(summary="Register a new user", tags=["Auth"])
 class RegisterUserView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
-    permission_classes = [AllowAny,]
+    permission_classes = [
+        AllowAny,
+    ]

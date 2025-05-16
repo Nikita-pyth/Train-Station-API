@@ -1,15 +1,18 @@
 from django.test import TestCase
 from stations.models import Station, Route
 
+
 class RouteModelTest(TestCase):
     def setUp(self):
-        self.station_a = Station.objects.create(name="Rīga", latitude=56.95, longitude=24.11)
-        self.station_b = Station.objects.create(name="Liepāja", latitude=56.51, longitude=21.01)
+        self.station_a = Station.objects.create(
+            name="Rīga", latitude=56.95, longitude=24.11
+        )
+        self.station_b = Station.objects.create(
+            name="Liepāja", latitude=56.51, longitude=21.01
+        )
 
         self.route = Route.objects.create(
-            source=self.station_a,
-            destination=self.station_b,
-            distance=210
+            source=self.station_a, destination=self.station_b, distance=210
         )
 
     def test_route_created(self):

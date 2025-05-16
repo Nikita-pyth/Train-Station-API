@@ -5,21 +5,27 @@ from rest_framework.permissions import IsAuthenticated
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework.viewsets import ModelViewSet
 from orders.models import Ticket, Order
-from orders.serializers import TicketSerializer, OrderReadSerializer, OrderCreateSerializer
+from orders.serializers import (
+    TicketSerializer,
+    OrderReadSerializer,
+    OrderCreateSerializer,
+)
 
 
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
+
 
 @extend_schema_view(
     list=extend_schema(
         summary="List user tickets",
         parameters=[
             OpenApiParameter(
-                "date", type=str,
+                "date",
+                type=str,
                 description="Filter by journey date (YYYY-MM-DD)",
-                required=False
+                required=False,
             )
-        ]
+        ],
     ),
     retrieve=extend_schema(summary="Retrieve a specific ticket"),
     create=extend_schema(summary="Create a new ticket"),
@@ -34,17 +40,17 @@ class TicketViewSet(ModelViewSet):
 
     def get_queryset(self):
         queryset = Ticket.objects.filter(order__user=self.request.user)
-        date = self.request.query_params.get('date')
+        date = self.request.query_params.get("date")
         if date:
             try:
-                date_obj = datetime.strptime(date, '%Y-%m-%d').date()
+                date_obj = datetime.strptime(date, "%Y-%m-%d").date()
                 queryset = queryset.filter(date=date_obj)
             except ValueError:
                 pass
         return queryset
 
     def perform_create(self, serializer):
-        order = serializer.validated_data['order']
+        order = serializer.validated_data["order"]
         if order.user != self.request.user:
             raise PermissionDenied("You can only create tickets for your own orders.")
         serializer.save()
@@ -69,6 +75,6 @@ class OrderViewSet(ModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_serializer_class(self):
-        if self.action == 'create':
+        if self.action == "create":
             return OrderCreateSerializer
         return OrderReadSerializer

@@ -8,20 +8,29 @@ from datetime import datetime, timedelta
 
 User = get_user_model()
 
+
 class JourneySerializerTest(TestCase):
     def setUp(self):
-        self.station_a = Station.objects.create(name="Rīga", latitude=56.95, longitude=24.11)
-        self.station_b = Station.objects.create(name="Daugavpils", latitude=55.87, longitude=26.52)
-        self.route = Route.objects.create(source=self.station_a, destination=self.station_b, distance=230)
+        self.station_a = Station.objects.create(
+            name="Rīga", latitude=56.95, longitude=24.11
+        )
+        self.station_b = Station.objects.create(
+            name="Daugavpils", latitude=55.87, longitude=26.52
+        )
+        self.route = Route.objects.create(
+            source=self.station_a, destination=self.station_b, distance=230
+        )
 
         self.train_type = TrainType.objects.create(name="Express")
-        self.train = Train.objects.create(name="Train B", cargo_num=3, places_in_cargo=20, train_type=self.train_type)
+        self.train = Train.objects.create(
+            name="Train B", cargo_num=3, places_in_cargo=20, train_type=self.train_type
+        )
 
         self.journey = Journey.objects.create(
             route=self.route,
             train=self.train,
             departure_time=datetime.now(),
-            arrival_time=datetime.now() + timedelta(hours=3)
+            arrival_time=datetime.now() + timedelta(hours=3),
         )
 
         self.crew1 = Crew.objects.create(first_name="John", last_name="Doe")

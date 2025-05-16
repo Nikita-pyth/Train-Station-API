@@ -2,6 +2,7 @@ from django.db import models
 from stations.models import Route
 from trains.models import Train
 
+
 class Crew(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

@@ -1,14 +1,12 @@
 from django.test import TestCase
 from trains.models import Train, TrainType
 
+
 class TrainModelTest(TestCase):
     def setUp(self):
         self.train_type = TrainType.objects.create(name="Regional")
         self.train = Train.objects.create(
-            name="Train X",
-            cargo_num=5,
-            places_in_cargo=30,
-            train_type=self.train_type
+            name="Train X", cargo_num=5, places_in_cargo=30, train_type=self.train_type
         )
 
     def test_train_creation(self):

@@ -1,6 +1,7 @@
 from django.test import TestCase
 from trains.models import TrainType
 
+
 class TrainTypeModelTest(TestCase):
     def setUp(self):
         self.train_type = TrainType.objects.create(name="Intercity")

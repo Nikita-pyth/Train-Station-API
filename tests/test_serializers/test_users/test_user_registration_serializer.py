@@ -4,12 +4,13 @@ from users.serializers import UserRegistrationSerializer
 
 User = get_user_model()
 
+
 class UserRegistrationSerializerTest(TestCase):
     def test_valid_registration(self):
         data = {
             "username": "newuser",
             "email": "newuser@example.com",
-            "password": "securepass123"
+            "password": "securepass123",
         }
         serializer = UserRegistrationSerializer(data=data)
         self.assertTrue(serializer.is_valid(), serializer.errors)
@@ -22,10 +23,7 @@ class UserRegistrationSerializerTest(TestCase):
         self.assertTrue(user.check_password("securepass123"))
 
     def test_missing_username(self):
-        data = {
-            "email": "missing@example.com",
-            "password": "somepass"
-        }
+        data = {"email": "missing@example.com", "password": "somepass"}
         serializer = UserRegistrationSerializer(data=data)
         self.assertFalse(serializer.is_valid())
         self.assertIn("username", serializer.errors)
