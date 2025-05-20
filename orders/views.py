@@ -1,38 +1,20 @@
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 from datetime import datetime
 
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
-from drf_spectacular.utils import extend_schema, OpenApiParameter
-from rest_framework.viewsets import ModelViewSet
+from drf_spectacular.utils import extend_schema_view
+
 from orders.models import Ticket, Order
 from orders.serializers import (
     TicketSerializer,
     OrderReadSerializer,
     OrderCreateSerializer,
 )
+from orders.schemas import ticket_schema, order_schema
 
 
-from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
-
-
-@extend_schema_view(
-    list=extend_schema(
-        summary="List user tickets",
-        parameters=[
-            OpenApiParameter(
-                "date",
-                type=str,
-                description="Filter by journey date (YYYY-MM-DD)",
-                required=False,
-            )
-        ],
-    ),
-    retrieve=extend_schema(summary="Retrieve a specific ticket"),
-    create=extend_schema(summary="Create a new ticket"),
-    update=extend_schema(summary="Update a ticket"),
-    partial_update=extend_schema(summary="Partially update a ticket"),
-    destroy=extend_schema(summary="Delete a ticket"),
-)
+@extend_schema_view(**ticket_schema)
 class TicketViewSet(ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
@@ -56,14 +38,7 @@ class TicketViewSet(ModelViewSet):
         serializer.save()
 
 
-@extend_schema_view(
-    list=extend_schema(summary="List user orders"),
-    retrieve=extend_schema(summary="Retrieve a specific order"),
-    create=extend_schema(summary="Create a new order"),
-    update=extend_schema(summary="Update an order"),
-    partial_update=extend_schema(summary="Partially update an order"),
-    destroy=extend_schema(summary="Delete an order"),
-)
+@extend_schema_view(**order_schema)
 class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     permission_classes = [IsAuthenticated]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Train, TrainType
+from trains.models import Train, TrainType
 
 
 @admin.register(TrainType)

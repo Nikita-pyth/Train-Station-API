@@ -1,8 +1,8 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth import get_user_model
 from journeys.models import Journey
 
-User = get_user_model()
+User = settings.AUTH_USER_MODEL
 
 
 class Order(models.Model):

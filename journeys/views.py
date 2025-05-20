@@ -1,6 +1,5 @@
-from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema
 from journeys.models import Journey, Crew
 from journeys.serializers import JourneySerializer, CrewSerializer
 

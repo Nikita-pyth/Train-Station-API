@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, Ticket
+from orders.models import Order, Ticket
 
 
 class TicketInline(admin.TabularInline):
