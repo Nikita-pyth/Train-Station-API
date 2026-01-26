@@ -1,0 +1,175 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "conductor1",
+      "email": "conductor1@trainstation.com",
+      "password": "pbkdf2_sha256$600000$h8dDFgHj9K$w2N9P+dU8V9P+H8d9K=",
+      "first_name": "John",
+      "last_name": "Smith",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "passenger1",
+      "email": "passenger1@example.com",
+      "password": "pbkdf2_sha256$600000$h8dDFgHj9K$w2N9P+dU8V9P+H8d9K=",
+      "first_name": "Alice",
+      "last_name": "Johnson",
+      "is_staff": false,
+      "is_superuser": false,
+      "is_active": true
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 1,
+    "fields": {
+      "name": "Riga Central",
+      "latitude": 56.9496,
+      "longitude": 24.1052
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 2,
+    "fields": {
+      "name": "Daugavpils",
+      "latitude": 55.8740,
+      "longitude": 26.5358
+    }
+  },
+  {
+    "model": "stations.station",
+    "pk": 3,
+    "fields": {
+      "name": "Jurmala",
+      "latitude": 56.9715,
+      "longitude": 23.7122
+    }
+  },
+  {
+    "model": "stations.route",
+    "pk": 1,
+    "fields": {
+      "source": 1,
+      "destination": 2,
+      "distance": 230
+    }
+  },
+  {
+    "model": "stations.route",
+    "pk": 2,
+    "fields": {
+      "source": 1,
+      "destination": 3,
+      "distance": 25
+    }
+  },
+  {
+    "model": "trains.traintype",
+    "pk": 1,
+    "fields": {
+      "name": "Express"
+    }
+  },
+  {
+    "model": "trains.traintype",
+    "pk": 2,
+    "fields": {
+      "name": "Regional"
+    }
+  },
+  {
+    "model": "trains.train",
+    "pk": 1,
+    "fields": {
+      "name": "Baltic Express",
+      "cargo_num": 6,
+      "places_in_cargo": 40,
+      "train_type": 1
+    }
+  },
+  {
+    "model": "trains.train",
+    "pk": 2,
+    "fields": {
+      "name": "Coastal Line",
+      "cargo_num": 4,
+      "places_in_cargo": 30,
+      "train_type": 2
+    }
+  },
+  {
+    "model": "journeys.crew",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Smith"
+    }
+  },
+  {
+    "model": "journeys.journey",
+    "pk": 1,
+    "fields": {
+      "route": 1,
+      "train": 1,
+      "departure_time": "2025-05-14T09:00:00Z",
+      "arrival_time": "2025-05-14T13:00:00Z",
+      "crew": [1]
+    }
+  },
+  {
+    "model": "journeys.journey",
+    "pk": 2,
+    "fields": {
+      "route": 2,
+      "train": 2,
+      "departure_time": "2025-05-14T10:00:00Z",
+      "arrival_time": "2025-05-14T10:30:00Z",
+      "crew": [1]
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 1,
+    "fields": {
+      "created_at": "2025-05-01T12:00:00Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "orders.order",
+    "pk": 2,
+    "fields": {
+      "created_at": "2025-05-01T12:30:00Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "orders.ticket",
+    "pk": 1,
+    "fields": {
+      "cargo": 2,
+      "seat": 12,
+      "journey": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "orders.ticket",
+    "pk": 2,
+    "fields": {
+      "cargo": 1,
+      "seat": 15,
+      "journey": 2,
+      "order": 2
+    }
+  }
+]
